@@ -1,16 +1,35 @@
-import java.util.Comparator;
+
 public class TimeSorter
 	{
-			
-		public int compare (sortedTimes, t)
-		{
-			if(s.getSortName() < s.getSortName())
-				{
-					return 1;
-				}
-			
-			else 
-					return -1;
-		}
+		private String sortName;
+		private double sortTime;
 		
+		public TimeSorter(String s, double t)
+		{
+			
+			sortName = s;
+			
+			sortTime = t;
+			
+			}
+
+		public String getSortName()
+			{
+				return sortName;
+			}
+
+		public void setSortName(String sortName)
+			{
+				this.sortName = sortName;
+			}
+
+		public double getSortTime()
+			{
+				return sortTime;
+			}
+
+		public void setSortTime(double sortTime)
+			{
+				this.sortTime = sortTime;
+			}
 	}

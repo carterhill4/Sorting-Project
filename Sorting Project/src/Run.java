@@ -6,10 +6,11 @@ import java.text.DecimalFormat;
 public class Run
 	{
 
-		static ArrayList <TimePOJO> sortedTimes = new ArrayList<TimePOJO>();
+		static ArrayList <TimeSorter> sortedTimes = new ArrayList<TimeSorter>();
 		
 		public static void main(String[] args)
 			{
+				
 				Scanner tanner = new Scanner(System.in);
 				
 				System.out.println("How many times do you want to run the simulation?");
@@ -37,8 +38,13 @@ public class Run
 					int [] quickArray = originalArray;
 					int [] bubbleArray = originalArray;
 					
+					//computing statement
+					System.out.println();
+					System.out.println("Computing...");
+					System.out.println();
+					
 					//decimal format
-					DecimalFormat d = new DecimalFormat("0.0000");
+					//DecimalFormat d = new DecimalFormat("0.0000");
 					
 					//insertion sort call
 					double startTimeQuickI = System.currentTimeMillis();
@@ -52,7 +58,7 @@ public class Run
 					
 					double formatInsertTime = InsertionTime / 1000;
 
-					//System.out.println("Insertion sort = " + (d.format(formatInsertTime)) + " seconds");
+				
 					
 					
 					//selection sort call
@@ -67,7 +73,7 @@ public class Run
 					
 					double formatSelectionTime = SelectionTime / 1000;
 
-					//System.out.println("Selection sort = " + (d.format(formatSelectionTime)) + " seconds");
+				
 					
 					
 					//merge sort call
@@ -82,7 +88,7 @@ public class Run
 					
 					double formatMergeTime = MergeTime / 1000;
 
-					//System.out.println("Merge sort = " + (d.format(formatMergeTime)) + " seconds");
+				
 					
 					//quick sort call
 					double startTimeQuickQ = System.currentTimeMillis();
@@ -96,7 +102,7 @@ public class Run
 					
 					double formatQuickTime = QuickTime / 1000;
 
-					//System.out.println("Quick sort = " + (d.format(formatQuickTime)) + " seconds");
+					
 					
 					
 					//bubble sort call
@@ -111,24 +117,37 @@ public class Run
 					
 					double formatBubbleTime = BubbleTime / 1000;
 
-					//System.out.println("Bubble sort = " + (d.format(formatBubbleTime)) + " seconds");
 					
 					
-					sortedTimes.add(new TimePOJO("Insertion", formatInsertTime));
 					
-					sortedTimes.add(new TimePOJO("Selection", formatSelectionTime));
+					sortedTimes.add(new TimeSorter("Insertion", formatInsertTime));
 					
-					sortedTimes.add(new TimePOJO("merge", formatMergeTime));
+					sortedTimes.add(new TimeSorter("Selection", formatSelectionTime));
 					
-					sortedTimes.add(new TimePOJO("Quick", formatQuickTime));
+					sortedTimes.add(new TimeSorter("Merge", formatMergeTime));
 					
-					sortedTimes.add(new TimePOJO("Bubble", formatInsertTime));
+					sortedTimes.add(new TimeSorter("Quick", formatQuickTime));
 					
-					Collections.sort(sortedTimes. new TimeSorter.compare());
+					sortedTimes.add(new TimeSorter("Bubble", formatBubbleTime));
 					
-					sortedTimes.sort(Comparator.comparing(TimePOJO::getSortTime));
+					
+					
+					Collections.sort(sortedTimes, new AlgSorter());
+					
+					sortedTimes.sort(Comparator.comparing(TimeSorter::getSortTime));
 			
-			}
+					int place = 1;
+					
+					for(TimeSorter s: sortedTimes)
+						{
+							System.out.printf("%-20s", place + "." + s.getSortName());
+							System.out.printf("%.3f", s.getSortTime());
+							System.out.printf("%-2s", " seconds");
+							System.out.println();
+							place++;
+						}
+					
+	}
 			
 			
 	}
